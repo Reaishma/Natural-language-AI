@@ -123,6 +123,10 @@
             border-radius: 12px;
             box-shadow: 0 5px 15px var(--shadow-medium);
             border: 1px solid var(--border-color);
+            /* --- IMPORTANT FIX --- */
+            /* Ensure content sections are block-level elements by default */
+            display: block; 
+            /* This makes sure that when 'hidden' is removed, it becomes visible */
         }
 
         .content-section h2 {
@@ -311,7 +315,7 @@
             gap: 8px;
         }
         .options-group input[type="range"],
-        .options[type="number"] {
+        .options-group input[type="number"] {
             width: 100px; /* Fixed width for sliders/numbers */
             padding: 5px;
             text-align: center;
@@ -973,12 +977,14 @@
             const contentSections = document.querySelectorAll('.content-section');
 
             function showSection(targetId) {
-                console.log("Showing section:", targetId); // Debugging message
+                console.log("Attempting to show section:", targetId); // Debugging message
                 contentSections.forEach(section => {
                     if (section.id === targetId) {
                         section.classList.remove('hidden');
+                        console.log(`Removed 'hidden' from: ${section.id}`);
                     } else {
                         section.classList.add('hidden');
+                        console.log(`Added 'hidden' to: ${section.id}`);
                     }
                 });
             }
@@ -986,15 +992,18 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevent default link behavior (page reload)
-                    console.log("Nav link clicked for section:", e.target.dataset.targetSection); // Debugging message
+                    
+                    // Use e.currentTarget to ensure we get the 'a' element, not a child like 'i'
+                    const clickedLink = e.currentTarget; 
+                    console.log("Nav link clicked for section:", clickedLink.dataset.targetSection); // Debugging message
 
                     // Remove 'active' class from all links
                     navLinks.forEach(nav => nav.classList.remove('active'));
                     // Add 'active' class to the clicked link
-                    e.currentTarget.classList.add('active'); // Use currentTarget to ensure the 'a' tag is selected
+                    clickedLink.classList.add('active'); 
 
                     // Get the target section ID from the data attribute
-                    const targetSectionId = e.currentTarget.dataset.targetSection;
+                    const targetSectionId = clickedLink.dataset.targetSection;
                     showSection(targetSectionId);
                 });
             });
