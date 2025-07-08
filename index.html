@@ -40,8 +40,9 @@
         }
 
         /* Utility classes */
+        /* Removed !important from here. We will manage display via JS directly for more robust control. */
         .hidden {
-            display: none !important; /* Ensure it overrides other display properties */
+            display: none; 
         }
 
         /* Layout: Sidebar and Main Content */
@@ -53,7 +54,6 @@
             box-shadow: 2px 0 10px var(--shadow-medium);
             display: flex;
             flex-direction: column;
-            
             position: fixed; /* Make the sidebar fixed */
             top: 0;
             left: 0;
@@ -109,7 +109,6 @@
             flex-grow: 1;
             padding: 30px;
             box-sizing: border-box;
-            /* Explicitly set margin-left for desktop view */
             margin-left: 280px; 
             overflow-y: auto; /* Enable scrolling for content if needed */
         }
@@ -118,12 +117,12 @@
         .content-section {
             background-color: #ffffff;
             padding: 30px;
-            margin-bottom: 30px; /* Adjust if needed */
+            margin-bottom: 30px;
             border-radius: 12px;
             box-shadow: 0 5px 15px var(--shadow-medium);
             border: 1px solid var(--border-color);
-            /* This property is now controlled by JavaScript's inline style */
-            /* If you want a default for non-hidden, you can add it, but JS will override when showing */
+            /* Default display for content sections when visible */
+            display: block; /* Ensure it's block by default, will be overridden by JS for hidden */
         }
 
         .content-section h2 {
@@ -966,7 +965,27 @@
                 return responses[Math.floor(Math.random() * responses.length)];
             }
         }
-        // --- UI Logic for Section Switching ---
+
+        ---
+        ## Core Problem Solved: Display Logic
+        ---
+
+        The most critical change is in the CSS and the `showSection` JavaScript function.
+
+        **1. CSS `.hidden` class:**
+        I've **removed `!important`** from the `.hidden` class in your CSS:
+
+        ```css
+        .hidden {
+            display: none; 
+        }
+        ```
+        This is crucial. The `!important` keyword was causing the `display: none;` to override everything else, even inline JavaScript styles. By removing it, our JavaScript has full control.
+
+        **2. JavaScript `showSection` function:**
+        This function now explicitly sets the `display` style for each section.
+
+        ```javascript
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-link');
             const contentSections = document.querySelectorAll('.content-section');
@@ -974,14 +993,11 @@
             function showSection(targetId) {
                 contentSections.forEach(section => {
                     if (section.id === targetId) {
-                        section.classList.remove('hidden');
-                        // Crucially, set its display property explicitly to override !important
+                        // Set display based on its default, which for content-section is 'block'
+                        // This directly overrides the 'display: none' that was potentially set.
                         section.style.display = 'block'; 
-                        // If any .content-section has a different default display (e.g., display: flex for dashboard),
-                        // you might need to adjust this, but 'block' is common for sections.
                     } else {
-                        section.classList.add('hidden');
-                        section.style.display = 'none'; // Ensure it's explicitly hidden
+                        section.style.display = 'none'; // Explicitly hide other sections
                     }
                 });
             }
@@ -1002,194 +1018,18 @@
             // Show home section by default on load
             showSection('home-section');
         });
+        ```
 
-        // --- Demo Functions for Each NLP Feature ---
+        **Why this approach works reliably:**
 
-        // Conversational Chatbot
-        function sendChatMessage() {
-            const chatInput = document.getElementById('chatInput');
-            const chatHistory = document.getElementById('chatHistory');
-            const userMessage = chatInput.value.trim();
+        * **Direct Inline Styling:** Setting `element.style.display = 'block';` or `element.style.display = 'none';` directly manipulates the element's inline `style` attribute. Inline styles have the highest specificity and will always override styles defined in external or internal stylesheets, *even* if those stylesheet rules use `!important` (unless the inline style itself also uses `!important`, which we avoid here).
+        * **No Conflict:** By removing `!important` from the `.hidden` class, we eliminate the conflict. Now, JavaScript's direct control over `style.display` is unchallenged.
+        * **Clean Toggle:** When a section is clicked, `showSection` hides *all* sections by setting their `display` to `'none'`, then explicitly sets the `display` of the *target* section to `'block'`. This ensures only one section is ever visible.
 
-            if (userMessage) {
-                const userMsgDiv = document.createElement('div');
-                userMsgDiv.classList.add('chat-message', 'user');
-                userMsgDiv.textContent = userMessage;
-                chatHistory.appendChild(userMsgDiv);
+        ---
+        ## Other Minor Improvements
+        ---
 
-                chatInput.value = ''; // Clear input
+        * **CSS `content-section` default display:** I added `display: block;` to the `.content-section` CSS rule. While the JavaScript will manage visibility, this sets a clear default if for any reason inline styles aren't applied.
 
-                // Scroll to bottom
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-
-                // Get bot response
-                setTimeout(() => { // Simulate a small delay for bot response
-                    const botResponse = nlpService.generateChatResponse(userMessage);
-                    const botMsgDiv = document.createElement('div');
-                    botMsgDiv.classList.add('chat-message', 'bot');
-                    botMsgDiv.textContent = botResponse.response;
-                    chatHistory.appendChild(botMsgDiv);
-                    chatHistory.scrollTop = chatHistory.scrollHeight;
-
-                    // Optional: Log analysis to console for debugging
-                    console.log('Chat analysis:', botResponse.analysis);
-                }, 500);
-            }
-        }
-
-        function clearChatHistory() {
-            const chatHistory = document.getElementById('chatHistory');
-            chatHistory.innerHTML = '<div class="chat-message bot">Hello! I\'m an AI assistant with NLP capabilities. How can I help you today?</div>';
-        }
-
-        // Sentiment Analysis
-        function runSentimentAnalysis() {
-            const text = document.getElementById('sentimentTextInput').value;
-            const output = document.getElementById('sentimentOutput');
-            if (!text.trim()) {
-                output.textContent = "Please enter some text for sentiment analysis.";
-                return;
-            }
-            const result = nlpService.analyzeSentiment(text);
-            output.textContent = `Label: ${result.label}\nPolarity: ${result.polarity}\nSubjectivity: ${result.subjectivity}\nPositive Words: ${result.positiveWords}\nNegative Words: ${result.negativeWords}`;
-        }
-
-        // Named Entity Recognition
-        function runNERAnalysis() {
-            const text = document.getElementById('nerTextInput').value;
-            const output = document.getElementById('nerOutput');
-            if (!text.trim()) {
-                output.textContent = "Please enter some text for entity recognition.";
-                return;
-            }
-            const entities = nlpService.extractEntities(text);
-            if (entities.length > 0) {
-                output.textContent = JSON.stringify(entities, null, 2);
-            } else {
-                output.textContent = "No named entities found.";
-            }
-        }
-
-        // Text Generation
-        function runTextGeneration() {
-            const prompt = document.getElementById('genPromptInput').value;
-            const maxLength = parseInt(document.getElementById('genMaxLength').value);
-            const creativity = parseFloat(document.getElementById('genCreativity').value);
-            const output = document.getElementById('generatedTextOutput');
-            if (!prompt.trim()) {
-                output.textContent = "Please enter a prompt to generate text.";
-                return;
-            }
-            const generatedText = nlpService.generateText(prompt, maxLength, creativity);
-            output.textContent = generatedText;
-        }
-
-        // Question Answering
-        function runQuestionAnswering() {
-            const context = document.getElementById('contextInput').value;
-            const question = document.getElementById('questionInput').value;
-            const output = document.getElementById('answerOutput');
-            if (!context.trim()) {
-                output.textContent = "Please provide context text to find an answer.";
-                return;
-            }
-            if (!question.trim()) {
-                output.textContent = "Please enter a question.";
-                return;
-            }
-            const result = nlpService.answerQuestion(question, context);
-            output.textContent = `Answer: "${result.answer}"\nConfidence: ${(result.confidence * 100).toFixed(2)}%\nContext Sentence: "${result.context}"`;
-        }
-
-        // Tokenization & POS Tagging
-        function runPOSTagging() {
-            const text = document.getElementById('posTextInput').value;
-            const output = document.getElementById('posOutput');
-            if (!text.trim()) {
-                output.textContent = "Please enter some text for tokenization and POS tagging.";
-                return;
-            }
-            const result = nlpService.tokenizeAndPOS(text);
-            if (result.length > 0) {
-                output.textContent = JSON.stringify(result, null, 2);
-            } else {
-                output.textContent = "No tokens found.";
-            }
-        }
-
-        // Text Summarization
-        function runTextSummarization() {
-            const text = document.getElementById('summaryTextInput').value;
-            const ratio = parseFloat(document.getElementById('summaryLength').value);
-            const output = document.getElementById('summaryOutput');
-            if (!text.trim()) {
-                output.textContent = "Please enter text to summarize.";
-                return;
-            }
-            const summary = nlpService.summarizeText(text, ratio);
-            output.textContent = summary;
-        }
-
-        // Topic Modeling
-        function runTopicModeling() {
-            const text = document.getElementById('topicTextInput').value;
-            const numTopics = parseInt(document.getElementById('numTopics').value);
-            const output = document.getElementById('topicsOutput');
-            if (!text.trim()) {
-                output.textContent = "Please enter text for topic modeling.";
-                return;
-            }
-            const result = nlpService.extractTopics(text, numTopics);
-            let outputText = `Extracted Topics (${result.topics.length} groups):\n`;
-            if (result.topics.length > 0) {
-                result.topics.forEach((topic, index) => {
-                    outputText += `  Topic ${index + 1}: ${topic.join(', ')}\n`;
-                });
-            } else {
-                outputText += "No distinct topics found based on current settings.\n";
-            }
-            outputText += `\nTop 20 Most Frequent Words (excluding stopwords):\n${JSON.stringify(result.wordFreq, null, 2)}`;
-            output.textContent = outputText;
-        }
-
-        // Full Analysis Dashboard
-        function runFullAnalysis() {
-            const text = document.getElementById('inputTextDashboard').value;
-            const dashboardSentiment = document.getElementById('dashboardSentiment');
-            const dashboardEntities = document.getElementById('dashboardEntities');
-            const dashboardTopics = document.getElementById('dashboardTopics');
-            const fullAnalysisOutput = document.getElementById('fullAnalysisOutput');
-
-            dashboardSentiment.textContent = 'Analyzing...';
-            dashboardEntities.textContent = 'Analyzing...';
-            dashboardTopics.textContent = 'Analyzing...';
-            fullAnalysisOutput.textContent = 'Running all analyses...';
-
-            if (!text.trim()) {
-                dashboardSentiment.textContent = 'N/A';
-                dashboardEntities.textContent = 'N/A';
-                dashboardTopics.textContent = 'N/A';
-                fullAnalysisOutput.textContent = "Please enter text for comprehensive analysis.";
-                return;
-            }
-
-            const sentiment = nlpService.analyzeSentiment(text);
-            const entities = nlpService.extractEntities(text);
-            const topics = nlpService.extractTopics(text);
-            const summary = nlpService.summarizeText(text);
-            const pos = nlpService.tokenizeAndPOS(text);
-
-            dashboardSentiment.textContent = `Label: ${sentiment.label} (Polarity: ${sentiment.polarity})`;
-            dashboardEntities.textContent = entities.map(e => `${e.text} (${e.label})`).slice(0, 3).join(', ') + (entities.length > 3 ? '...' : '');
-            dashboardTopics.textContent = topics.topics.map(t => t.join(', ')).slice(0, 2).join('; ') + (topics.topics.length > 2 ? '...' : '');
-
-            fullAnalysisOutput.textContent = `--- Sentiment Analysis ---\n${JSON.stringify(sentiment, null, 2)}\n\n` +
-                                             `--- Named Entities ---\n${JSON.stringify(entities, null, 2)}\n\n` +
-                                             `--- Tokens & POS Tags ---\n${JSON.stringify(pos, null, 2)}\n\n` +
-                                             `--- Text Summary ---\n${summary}\n\n` +
-                                             `--- Extracted Topics ---\n${JSON.stringify(topics.topics, null, 2)}\n\n` +
-                                             `--- Top Words by Frequency ---\n${JSON.stringify(topics.wordFreq, null, 2)}`;
-        }
-    </script>
-</body>
-</html>
+        With these changes, you should now see the correct content displayed when you click on each link in the sidebar! Please save this code and try it out.
