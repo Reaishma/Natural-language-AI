@@ -27,7 +27,6 @@
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
-            display: flex; /* Flex container for sidebar and main content */
             min-height: 100vh;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
@@ -45,14 +44,20 @@
         }
         /* Layout: Sidebar and Main Content */
         .sidebar {
-            width: 280px; /* Slightly wider sidebar */
+            width: 280px; /* Fixed width sidebar */
             background-color: #2c3e50; /* Darker background for sidebar */
             color: var(--text-light);
             padding: 25px 20px;
             box-shadow: 2px 0 10px var(--shadow-medium);
             display: flex;
             flex-direction: column;
-            flex-shrink: 0; /* Prevent shrinking */
+            
+            position: fixed; /* Make the sidebar fixed */
+            top: 0;
+            left: 0;
+            height: 100vh; /* Full viewport height */
+            overflow-y: auto; /* Enable scrolling for sidebar content if needed */
+            z-index: 1000; /* Ensure sidebar is on top */
         }
 
         .sidebar h2 {
@@ -102,6 +107,7 @@
             flex-grow: 1;
             padding: 30px;
             box-sizing: border-box;
+            margin-left: 280px; /* Offset for the fixed sidebar */
             overflow-y: auto; /* Enable scrolling for content if needed */
         }
         /* Section Styling for Dynamic Content */
@@ -192,7 +198,6 @@
             max-height: 80px;
             overflow-y: auto;
         }
-
         textarea:focus, input[type="text"]:focus {
             outline: none;
             border-color: var(--primary-color);
@@ -230,6 +235,7 @@
             width: auto;
             flex-grow: 1;
         }
+
         /* Result Display Styling */
         .result-output {
             background-color: var(--background-dark);
@@ -285,7 +291,6 @@
             align-self: flex-start;
             border-bottom-left-radius: 2px;
         }
-
         /* Options for Length/Number of Topics */
         .options-group {
             display: flex;
@@ -307,18 +312,18 @@
 
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            body {
-                flex-direction: column; /* Stack sidebar and main content */
-            }
+        @media (max-width: 768px) { /* Adjust breakpoint for smaller screens */
             .sidebar {
                 width: 100%;
+                height: auto; /* Allow sidebar to collapse height */
+                position: relative; /* Make it flow with content on small screens */
                 padding: 15px 10px;
                 box-shadow: 0 2px 10px var(--shadow-medium);
                 flex-direction: row; /* Make sidebar horizontal */
                 justify-content: center;
                 overflow-x: auto; /* Allow horizontal scroll for many nav items */
                 white-space: nowrap; /* Prevent wrapping of nav items */
+                z-index: 999; /* Lower z-index when it's not fixed */
             }
             .sidebar h2 {
                 display: none; /* Hide title on smaller screens */
@@ -342,6 +347,7 @@
                 font-size: 1em;
             }
             .main-content {
+                margin-left: 0; /* Remove margin when sidebar is on top */
                 padding: 20px;
             }
             .card-grid {
@@ -411,61 +417,66 @@
             </ul>
         </nav>
     </aside>
+
     <main class="main-content">
         <section id="home-section" class="content-section">
             <h1>Welcome to the NLP Demonstration Platform</h1>
             <p>This platform showcases various Natural Language Processing capabilities using state-of-the-art models and techniques.</p>
             
             <h2>🚀 Available Features:</h2>
+            <h3>Core NLP Tasks:</h3>
             <div class="card-grid">
                 <div class="card">
                     <h3>💬 Conversational Chatbot</h3>
-                    <p>Interactive AI assistant for dynamic conversations.</p>
+                    <p>Interactive AI assistant</p>
                 </div>
                 <div class="card">
                     <h3>😊 Sentiment Analysis</h3>
-                    <p>Detect emotional tone (positive, negative, neutral) in text.</p>
+                    <p>Detect emotions in text</p>
                 </div>
                 <div class="card">
                     <h3>🏷️ Named Entity Recognition</h3>
-                    <p>Identify and classify key entities like persons, organizations, locations.</p>
+                    <p>Extract entities from text</p>
                 </div>
                 <div class="card">
                     <h3>✍️ Text Generation</h3>
-                    <p>Create new text content based on given prompts.</p>
+                    <p>Create new text content</p>
                 </div>
                 <div class="card">
                     <h3>❓ Question Answering</h3>
-                    <p>Get AI-powered answers to questions from a provided context.</p>
+                    <p>Get answers from context</p>
                 </div>
+            </div>
+            <h3 style="margin-top: 30px;">Advanced Analysis:</h3>
+            <div class="card-grid">
                 <div class="card">
                     <h3>🔤 Tokenization & POS Tagging</h3>
-                    <p>Break down text into tokens and analyze grammatical structure.</p>
+                    <p>Break down text structure</p>
                 </div>
                 <div class="card">
                     <h3>📝 Text Summarization</h3>
-                    <p>Generate concise summaries of longer documents.</p>
+                    <p>Generate concise summaries</p>
                 </div>
                 <div class="card">
                     <h3>📊 Topic Modeling</h3>
-                    <p>Discover hidden themes and subjects within large texts.</p>
+                    <p>Discover themes in text</p>
                 </div>
                 <div class="card">
                     <h3>🔍 Text Analysis Dashboard</h3>
-                    <p>A comprehensive overview combining multiple NLP techniques.</p>
+                    <p>Comprehensive text insights</p>
                 </div>
             </div>
 
-            <h2>🛠️ Technologies Used:</h2>
+            <h2 style="margin-top: 30px;">🛠️ Technologies Used:</h2>
             <ul>
-                <li><strong>Custom NLPService (JavaScript):</strong> Our core logic for all NLP tasks.</li>
-                <li><strong>HTML5 & CSS3:</strong> For a modern, responsive web interface.</li>
-                <li><strong>JavaScript:</strong> Powers all client-side processing and dynamic interactions.</li>
-                <li><strong>Font Awesome:</strong> Provides intuitive icons for features.</li>
-                <li>*(Note: In a real-world scenario, this might include frameworks like React/Vue/Angular, backend APIs with Python/Node.js, and advanced ML libraries like spaCy, NLTK, or Hugging Face Transformers.)*</li>
+                <li><strong>Compromise.js:</strong> Natural language processing (Simplified implementation for demo)</li>
+                <li><strong>Plotly.js:</strong> Interactive visualizations (Placeholder for future integration, not currently active in simple demo)</li>
+                <li><strong>JavaScript:</strong> Client-side processing</li>
+                <li><strong>HTML5 & CSS3:</strong> Modern web interface</li>
             </ul>
             <p style="margin-top: 30px; font-weight: bold; color: var(--primary-color);">👈 Use the sidebar to navigate between different NLP features and start exploring!</p>
         </section>
+
         <section id="chatbot-section" class="content-section hidden">
             <h2>💬 Conversational Chatbot</h2>
             <p>Chat with an AI assistant that integrates multiple NLP capabilities.</p>
@@ -480,6 +491,7 @@
             </div>
             <button onclick="clearChatHistory()" class="button-group" style="background-color: var(--secondary-color);">🗑️ Clear Chat History</button>
         </section>
+
         <section id="sentiment-section" class="content-section hidden">
             <h2>😊 Sentiment Analysis</h2>
             <p>Determine the emotional tone of your text (Positive, Negative, Neutral).</p>
@@ -527,6 +539,7 @@
             <button onclick="runTextGeneration()">🚀 Generate Text</button>
             <div class="result-output" id="generatedTextOutput"></div>
         </section>
+
         <section id="qa-section" class="content-section hidden">
             <h2>❓ Question Answering</h2>
             <p>Ask questions about a given context and get AI-powered answers.</p>
@@ -542,7 +555,6 @@
             <button onclick="runQuestionAnswering()">🔍 Find Answer</button>
             <div class="result-output" id="answerOutput"></div>
         </section>
-
         <section id="pos-section" class="content-section hidden">
             <h2>🔤 Tokenization & POS Tagging</h2>
             <p>Analyze the grammatical structure and parts of speech in your text.</p>
@@ -554,6 +566,7 @@
             <button onclick="runPOSTagging()">Analyze Structure</button>
             <div class="result-output" id="posOutput"></div>
         </section>
+
         <section id="summary-section" class="content-section hidden">
             <h2>📝 Text Summarization</h2>
             <p>Generate concise summaries of longer texts.</p>
@@ -609,7 +622,6 @@
             <button onclick="runTopicModeling()">🔍 Extract Topics</button>
             <div class="result-output" id="topicsOutput"></div>
         </section>
-
         <section id="dashboard-section" class="content-section hidden">
             <h2>🔍 Text Analysis Dashboard</h2>
             <p>Comprehensive analysis combining multiple NLP techniques.</p>
@@ -643,7 +655,9 @@
     </main>
 
     <script>
-        // Part 11 End: Start of NLPService Class
+        // Global instance of NLPService
+        const nlpService = new NLPService();
+
         class NLPService {
             constructor() {
                 this.sentimentWords = {
@@ -725,7 +739,6 @@
                     negativeWords: negativeScore
                 };
             }
-
             extractEntities(text) {
                 if (!text || text.trim().length === 0) { return []; }
                 const entities = [];
@@ -857,7 +870,6 @@
                 const confidence = questionWords.length > 0 ? bestScore / questionWords.length : 0;
                 return { answer: bestSentence || "No relevant answer found in the context.", confidence: parseFloat(confidence.toFixed(2)), context: bestSentence };
             }
-
             summarizeText(text, ratio = 0.3) {
                 if (!text || text.trim().length === 0) { return "No text provided for summarization."; }
                 const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
@@ -880,7 +892,7 @@
 
             extractTopics(text, numTopics = 3) {
                 if (!text || text.trim().length === 0) { return { topics: [], wordFreq: {} }; }
-        const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                const words = text.toLowerCase().match(/\b\w+\b/g) || [];
                 const stopWords = new Set([
                     'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
                     'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have',
@@ -937,8 +949,6 @@
                 return responses[Math.floor(Math.random() * responses.length)];
             }
         }
-// Global instance of NLPService
-        const nlpService = new NLPService();
 
         // --- UI Logic for Section Switching ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -1158,4 +1168,3 @@
     </script>
 </body>
 </html>
-
