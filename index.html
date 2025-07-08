@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,7 @@
         .hidden {
             display: none !important;
         }
+
         /* Layout: Sidebar and Main Content */
         .sidebar {
             width: 280px; /* Fixed width sidebar */
@@ -107,9 +109,11 @@
             flex-grow: 1;
             padding: 30px;
             box-sizing: border-box;
-            margin-left: 280px; /* Offset for the fixed sidebar */
+            /* Explicitly set margin-left for desktop view */
+            margin-left: 280px; 
             overflow-y: auto; /* Enable scrolling for content if needed */
         }
+
         /* Section Styling for Dynamic Content */
         .content-section {
             background-color: #ffffff;
@@ -198,6 +202,7 @@
             max-height: 80px;
             overflow-y: auto;
         }
+
         textarea:focus, input[type="text"]:focus {
             outline: none;
             border-color: var(--primary-color);
@@ -291,6 +296,7 @@
             align-self: flex-start;
             border-bottom-left-radius: 2px;
         }
+
         /* Options for Length/Number of Topics */
         .options-group {
             display: flex;
@@ -309,7 +315,6 @@
             padding: 5px;
             text-align: center;
         }
-
 
         /* Responsive Design */
         @media (max-width: 768px) { /* Adjust breakpoint for smaller screens */
@@ -447,6 +452,7 @@
                     <p>Get answers from context</p>
                 </div>
             </div>
+            
             <h3 style="margin-top: 30px;">Advanced Analysis:</h3>
             <div class="card-grid">
                 <div class="card">
@@ -503,6 +509,7 @@
             <button onclick="runSentimentAnalysis()">Analyze Sentiment</button>
             <div class="result-output" id="sentimentOutput"></div>
         </section>
+
         <section id="ner-section" class="content-section hidden">
             <h2>🏷️ Named Entity Recognition</h2>
             <p>Identify and classify key entities in text, such as persons, organizations, locations, dates, and monetary values.</p>
@@ -555,6 +562,7 @@
             <button onclick="runQuestionAnswering()">🔍 Find Answer</button>
             <div class="result-output" id="answerOutput"></div>
         </section>
+
         <section id="pos-section" class="content-section hidden">
             <h2>🔤 Tokenization & POS Tagging</h2>
             <p>Analyze the grammatical structure and parts of speech in your text.</p>
@@ -622,6 +630,7 @@
             <button onclick="runTopicModeling()">🔍 Extract Topics</button>
             <div class="result-output" id="topicsOutput"></div>
         </section>
+
         <section id="dashboard-section" class="content-section hidden">
             <h2>🔍 Text Analysis Dashboard</h2>
             <p>Comprehensive analysis combining multiple NLP techniques.</p>
@@ -739,6 +748,7 @@
                     negativeWords: negativeScore
                 };
             }
+
             extractEntities(text) {
                 if (!text || text.trim().length === 0) { return []; }
                 const entities = [];
@@ -870,6 +880,7 @@
                 const confidence = questionWords.length > 0 ? bestScore / questionWords.length : 0;
                 return { answer: bestSentence || "No relevant answer found in the context.", confidence: parseFloat(confidence.toFixed(2)), context: bestSentence };
             }
+
             summarizeText(text, ratio = 0.3) {
                 if (!text || text.trim().length === 0) { return "No text provided for summarization."; }
                 const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
@@ -1168,3 +1179,4 @@
     </script>
 </body>
 </html>
+
