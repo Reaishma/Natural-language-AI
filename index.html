@@ -3,68 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLP Service Demo</title>
+    <title>Comprehensive NLP Demo Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Basic Reset & Body Styling */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-        }
-             /* Container and Header */
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            background-color: #ffffff;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e0e0e0;
+        /* Global Reset & Base Styling */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #28a745;
+            --background-light: #f8f9fa;
+            --background-dark: #e9ecef;
+            --text-dark: #343a40;
+            --text-light: #f8f9fa;
+            --border-color: #dee2e6;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex; /* Flex container for sidebar and main content */
+            min-height: 100vh;
         }
-              /* Input Area Styling */
-        .input-section {
-            margin-bottom: 25px;
-            padding: 20px;
-            background-color: #eaf3f1;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        /* Layout: Sidebar and Main Content */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50; /* Darker background for sidebar */
+            color: var(--text-light);
+            padding: 25px 20px;
+            box-shadow: 2px 0 10px var(--shadow-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul li a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 12px 15px;
             border-radius: 8px;
-            border: 1px dashed #b2dfdb;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .sidebar nav ul li a:hover,
+        .sidebar nav ul li a.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            max-width: calc(100% - 250px);
+            box-sizing: border-box;
+        }
+        /* Section & Card Styling */
+        section {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-medium);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--background-dark);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px var(--shadow-light);
+            border: 1px solid #dcdcdc;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-medium);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .card p {
+            font-size: 0.95em;
+            color: #555;
+        }
+        /* Input & Button Styling */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
         }
 
         textarea {
-            width: calc(100% - 20px);
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #b2dfdb;
+            width: calc(100% - 22px);
+            padding: 12px;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 1em;
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
 
         button {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            background-color: #007bff;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 1.1em;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            font-weight: 500;
         }
 
         button:hover {
@@ -75,152 +187,247 @@
         button:active {
             transform: translateY(0);
         }
-              /* Results Area Styling */
-        .results-section {
-            margin-top: 30px;
-            background-color: #f8f8f8;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #ececec;
-        }
-
-        .results-section h2 {
-            color: #34495e;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 2px solid #cfd8dc;
-            padding-bottom: 10px;
-        }
-
-        .result-box {
+        /* Dashboard Result Styling */
+        .dashboard-results .result-card {
             background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-left: 5px solid #4CAF50;
-            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-color); /* Default highlight */
+            padding: 20px;
             margin-bottom: 15px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--shadow-light);
             transition: all 0.2s ease;
         }
 
-        .result-box:hover {
+        .dashboard-results .result-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 15px var(--shadow-medium);
         }
 
-        .result-box strong {
-            color: #2c3e50;
-            font-size: 1.1em;
-            display: block;
-            margin-bottom: 8px;
+        .dashboard-results .result-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-bottom: 10px;
         }
 
-        .result-box pre {
-            background-color: #eef;
-            padding: 10px;
-            border-radius: 4px;
+        .dashboard-results .result-card pre {
+            background-color: var(--background-dark);
+            padding: 15px;
+            border-radius: 6px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-all;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.9em;
             border: 1px dashed #d0d0ed;
+            color: #333;
         }
-             /* Specific result box colors */
-        #sentimentResult .result-box { border-left-color: #28a745; }
-        #entitiesResult .result-box { border-left-color: #17a2b8; }
-        #posResult .result-box { border-left-color: #ffc107; }
-        #summaryResult .result-box { border-left-color: #6f42c1; }
-        #topicsResult .result-box { border-left-color: #dc3545; }
-        #answerResult .result-box { border-left-color: #fd7e14; }
-        #generatedTextResult .result-box { border-left-color: #20c997; }
-        #chatResponseResult .result-box { border-left-color: #6610f2; }
+
+        /* Specific highlight colors for results */
+        #sentimentOutput + pre { border-left-color: #28a745; } /* Green */
+        #entitiesOutput + pre { border-left-color: #17a2b8; } /* Teal */
+        #posOutput + pre { border-left-color: #ffc107; }    /* Yellow */
+        #summaryOutput + pre { border-left-color: #6f42c1; } /* Purple */
+        #topicsOutput + pre { border-left-color: #dc3545; } /* Red */
+        #answerOutput + pre { border-left-color: #fd7e14; } /* Orange */
+        #generatedTextOutput + pre { border-left-color: #20c997; } /* Mint */
+        #chatResponseOutput + pre { border-left-color: #6610f2; } /* Indigo */
+
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                margin: 15px auto;
-                padding: 20px 25px;
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column; /* Stack sidebar and main content */
+            }
+            .sidebar {
+                width: 100%;
+                padding: 15px;
+                box-shadow: 0 2px 10px var(--shadow-medium);
+                flex-direction: row; /* Make sidebar horizontal */
+                justify-content: center;
+            }
+            .sidebar h2 {
+                display: none; /* Hide title on smaller screens */
+            }
+            .sidebar nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .sidebar nav ul li {
+                margin-bottom: 0;
+            }
+            .sidebar nav ul li a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            .main-content {
+                max-width: 100%;
+                padding: 20px;
+            }
+            .card-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            section {
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 15px;
+            }
+            section {
+                padding: 20px;
+                margin-bottom: 20px;
             }
             h1 {
                 font-size: 2em;
             }
-            button {
-                font-size: 1em;
-                padding: 12px 15px;
+            h2 {
+                font-size: 1.5em;
             }
-        }
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
+            .sidebar nav ul {
+                flex-direction: column; /* Stack nav items vertically on very small screens */
+                align-items: center;
             }
-            .container {
-                padding: 15px 20px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-            textarea {
-                min-height: 80px;
+            .sidebar nav ul li a {
+                 width: 90%;
+                 text-align: center;
             }
         }
     </style>
 </head>
- <body>
-    <div class="container">
-        <h1>NLP Service Demo</h1>
+<body>
+    <aside class="sidebar">
+        <h2>NLP Platform</h2>
+        <nav>
+            <ul>
+                <li><a href="#welcome" class="nav-link active" data-section="welcome">Welcome</a></li>
+                <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                <li><a href="#technology" class="nav-link" data-section="technology">Technology Used</a></li>
+                <li><a href="#dashboard" class="nav-link" data-section="dashboard">Text Analysis Dashboard</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-        <div class="input-section">
-            <label for="inputText">Enter your text here:</label>
-            <textarea id="inputText" placeholder="Type or paste text for NLP analysis..."></textarea>
+    <main class="main-content">
+        <section id="welcome" class="active-section">
+            <h1>Welcome to the Comprehensive NLP Demo Platform!</h1>
+            <p>Explore the power of Natural Language Processing right here in your browser. This platform demonstrates various NLP capabilities using a custom-built, lightweight JavaScript service.</p>
+            <p>Our goal is to provide an intuitive interface for understanding and interacting with text data, from sentiment detection to entity recognition and more.</p>
+        </section>
+        <section id="features" class="hidden-section">
+            <h2>Available Features</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Sentiment Analysis</h3>
+                    <p>Determine the emotional tone of text (Positive, Negative, Neutral).</p>
+                </div>
+                <div class="card">
+                    <h3>Named Entity Recognition (NER)</h3>
+                    <p>Identify and classify key entities in text, such as persons, organizations, locations, dates, and monetary values.</p>
+                </div>
+                <div class="card">
+                    <h3>Part-of-Speech (POS) Tagging</h3>
+                    <p>Categorize words in a text based on their grammatical function (e.g., Noun, Verb, Adjective).</p>
+                </div>
+                <div class="card">
+                    <h3>Text Summarization</h3>
+                    <p>Condense longer texts into shorter, coherent summaries while retaining key information.</p>
+                </div>
+                <div class="card">
+                    <h3>Topic Modeling</h3>
+                    <p>Extract core topics and keywords from a given text to understand its main subject matter.</p>
+                </div>
+                <div class="card">
+                    <h3>Question Answering</h3>
+                    <p>Find relevant answers to your questions within a provided text context.</p>
+                </div>
+                <div class="card">
+                    <h3>Text Generation</h3>
+                    <p>Generate simple continuations or elaborations based on a given prompt.</p>
+                </div>
+                <div class="card">
+                    <h3>Chatbot Response</h3>
+                    <p>Generate dynamic responses based on user input, leveraging sentiment and intent.</p>
+                </div>
+            </div>
+        </section>
+        <section id="technology" class="hidden-section">
+            <h2>Technology Used</h2>
+            <p>This platform is powered entirely by client-side JavaScript, implementing simplified versions of standard NLP algorithms. Key components include:</p>
+            <ul>
+                <li><strong>Custom NLPService Class:</strong> A self-contained JavaScript class that encapsulates all the NLP functionalities.</li>
+                <li><strong>Regex for Pattern Matching:</strong> Used extensively for entity extraction and tokenization.</li>
+                <li><strong>Lexicon-based Sentiment Analysis:</strong> Employs predefined lists of positive and negative words to determine sentiment.</li>
+                <li><strong>Frequency-based Summarization & Topic Modeling:</strong> Identifies important sentences and keywords based on their occurrence frequency.</li>
+                <li><strong>Basic Conditional Logic:</strong> For chatbot responses and text generation.</li>
+            </ul>
+            <p>This approach highlights the core concepts of NLP without relying on large external libraries or server-side processing, making it transparent and easy to understand.</p>
+        </section>
 
-            <label for="inputQuestion">Enter a question (for QA):</label>
-            <textarea id="inputQuestion" placeholder="e.g., What is the capital of France? (requires context in main text area)"></textarea>
+        <section id="dashboard" class="hidden-section">
+            <h2>Text Analysis Dashboard</h2>
+            <p>Enter text below and click "Analyze" to see the NLP results live.</p>
+
+            <div class="input-group">
+                <label for="inputText">Main Text for Analysis:</label>
+                <textarea id="inputText" placeholder="Paste or type the text you want to analyze..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="inputQuestion">Question for QA (Optional, requires text above):</label>
+                <textarea id="inputQuestion" placeholder="e.g., What is NLP?"></textarea>
+            </div>
 
             <button onclick="runNLP()">Analyze Text</button>
-        </div>
 
-        <div class="results-section">
-            <h2>NLP Results</h2>
-            <div id="sentimentResult" class="result-box">
-                <strong>Sentiment Analysis:</strong>
-                <pre id="sentimentOutput"></pre>
+            <div class="dashboard-results">
+                <div class="result-card">
+                    <h3>Sentiment Analysis</h3>
+                    <pre id="sentimentOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Named Entity Recognition</h3>
+                    <pre id="entitiesOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Tokens and POS Tags</h3>
+                    <pre id="posOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Text Summary (30%)</h3>
+                    <pre id="summaryOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Extracted Topics</h3>
+                    <pre id="topicsOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Question Answering</h3>
+                    <pre id="answerOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Generated Text</h3>
+                    <pre id="generatedTextOutput"></pre>
+                </div>
+                <div class="result-card">
+                    <h3>Chatbot Response</h3>
+                    <pre id="chatResponseOutput"></pre>
+                </div>
             </div>
-            <div id="entitiesResult" class="result-box">
-                <strong>Named Entities:</strong>
-                <pre id="entitiesOutput"></pre>
-            </div>
-            <div id="posResult" class="result-box">
-                <strong>Tokens and POS Tags:</strong>
-                <pre id="posOutput"></pre>
-            </div>
-            <div id="summaryResult" class="result-box">
-                <strong>Text Summary (30%):</strong>
-                <pre id="summaryOutput"></pre>
-            </div>
-            <div id="topicsResult" class="result-box">
-                <strong>Extracted Topics:</strong>
-                <pre id="topicsOutput"></pre>
-            </div>
-            <div id="answerResult" class="result-box">
-                <strong>Question Answering:</strong>
-                <pre id="answerOutput"></pre>
-            </div>
-            <div id="generatedTextResult" class="result-box">
-                <strong>Generated Text:</strong>
-                <pre id="generatedTextOutput"></pre>
-            </div>
-            <div id="chatResponseResult" class="result-box">
-                <strong>Chatbot Response:</strong>
-                <pre id="chatResponseOutput"></pre>
-            </div>
-        </div>
-    </div>
-       <script>
+        </section>
+    </main>
+
+    <script>
+        // Part 9 End: JavaScript NLPService Class Definition Start
         class NLPService {
             constructor() {
-                // Predefined sentiment words
                 this.sentimentWords = {
                     positive: [
                         "good", "great", "excellent", "happy", "love", "awesome", "fantastic",
@@ -243,7 +450,7 @@
                     ],
                     question: ["what", "where", "when", "why", "how", "who", "which", "is", "are", "do", "does", "can", "could", "will", "would", "should", "did"]
                 };
-                              this.responseTemplates = {
+                this.responseTemplates = {
                     greeting: [
                         "Hello there! How can I assist you today?",
                         "Hi! It's great to hear from you.",
@@ -274,17 +481,16 @@
                     ]
                 };
             }
-                      // Sentiment Analysis
+
+            // Sentiment Analysis
             analyzeSentiment(text) {
                 if (!text || text.trim().length === 0) {
                     return { polarity: 0, subjectivity: 0, label: 'Neutral' };
                 }
-
                 const words = text.toLowerCase().match(/\b\w+\b/g) || [];
                 let positiveScore = 0;
                 let negativeScore = 0;
                 let subjectiveWords = 0;
-
                 words.forEach(word => {
                     if (this.sentimentWords.positive.includes(word)) {
                         positiveScore += 1;
@@ -294,16 +500,13 @@
                         subjectiveWords += 1;
                     }
                 });
-
                 const totalWords = words.length;
                 const netScore = positiveScore - negativeScore;
                 const polarity = totalWords > 0 ? netScore / totalWords : 0;
                 const subjectivity = totalWords > 0 ? subjectiveWords / totalWords : 0;
-
                 let label = 'Neutral';
                 if (polarity > 0.1) label = 'Positive';
                 else if (polarity < -0.1) label = 'Negative';
-
                 return {
                     polarity: Math.max(-1, Math.min(1, polarity * 5)),
                     subjectivity: Math.min(1, subjectivity * 2),
@@ -315,44 +518,23 @@
 
             // Named Entity Recognition (simplified)
             extractEntities(text) {
-                if (!text || text.trim().length === 0) {
-                    return [];
-                }
-
+                if (!text || text.trim().length === 0) { return []; }
                 const entities = [];
-
                 const personPattern = /\b(?:Mr\.?|Mrs\.?|Ms\.?|Dr\.?|Prof\.?)\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g;
                 const persons = text.match(personPattern) || [];
-                persons.forEach(person => {
-                    entities.push({ text: person.trim(), label: 'PERSON', description: 'Person name' });
-                });
-
+                persons.forEach(person => { entities.push({ text: person.trim(), label: 'PERSON', description: 'Person name' }); });
                 const namePattern = /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b/g;
                 const names = text.match(namePattern) || [];
-                names.forEach(name => {
-                    if (!persons.some(p => p.includes(name))) {
-                        entities.push({ text: name, label: 'PERSON', description: 'Possible person name' });
-                    }
-                });
-
+                names.forEach(name => { if (!persons.some(p => p.includes(name))) { entities.push({ text: name, label: 'PERSON', description: 'Possible person name' }); } });
                 const orgPattern = /\b[A-Z][a-z]*(?:\s+[A-Z][a-z]*)*\s+(?:Inc\.?|Corp\.?|LLC|Ltd\.?|Company|Corporation|University|College|School|Hospital|Bank|Group|Foundation|Institute)\b/g;
                 const orgs = text.match(orgPattern) || [];
-                orgs.forEach(org => {
-                    entities.push({ text: org, label: 'ORG', description: 'Organization' });
-                });
-
+                orgs.forEach(org => { entities.push({ text: org, label: 'ORG', description: 'Organization' }); });
                 const datePattern = /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}\b|\b\d{1,2}\/\d{1,2}\/\d{2,4}\b|\b\d{4}-\d{2}-\d{2}\b/g;
                 const dates = text.match(datePattern) || [];
-                dates.forEach(date => {
-                    entities.push({ text: date, label: 'DATE', description: 'Date' });
-                });
-
+                dates.forEach(date => { entities.push({ text: date, label: 'DATE', description: 'Date' }); });
                 const moneyPattern = /\$\d+(?:,\d{3})*(?:\.\d{2})?\b|\b\d+(?:,\d{3})*(?:\.\d{2})?\s+(?:dollars?|USD|euros?|EUR|pounds?|GBP)\b/g;
                 const money = text.match(moneyPattern) || [];
-                money.forEach(amount => {
-                    entities.push({ text: amount, label: 'MONEY', description: 'Monetary amount' });
-                });
-
+                money.forEach(amount => { entities.push({ text: amount, label: 'MONEY', description: 'Monetary amount' }); });
                 const locations = [
                     'United States', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'United Kingdom',
                     'France', 'Germany', 'Italy', 'Spain', 'Russia', 'China', 'Japan', 'India',
@@ -362,37 +544,27 @@
                     'California', 'Texas', 'Florida', 'New York', 'Pennsylvania', 'Illinois',
                     'Madurai', 'Tamil Nadu'
                 ];
-
                 locations.forEach(location => {
                     const regex = new RegExp(`\\b${location}\\b`, 'gi');
                     const matches = text.match(regex) || [];
-                    matches.forEach(match => {
-                        entities.push({ text: match, label: 'GPE', description: 'Geopolitical entity' });
-                    });
+                    matches.forEach(match => { entities.push({ text: match, label: 'GPE', description: 'Geopolitical entity' }); });
                 });
-
                 return entities;
             }
 
             tokenizeAndPOS(text) {
-                if (!text || text.trim().length === 0) {
-                    return [];
-                }
-
+                if (!text || text.trim().length === 0) { return []; }
                 const tokens = text.match(/\b\w+\b/g) || [];
                 const result = [];
-
                 tokens.forEach(token => {
                     const pos = this.simplePOSTag(token);
                     result.push({ text: token, pos: pos, lemma: token.toLowerCase() });
                 });
-
                 return result;
             }
 
             simplePOSTag(word) {
                 const lowerWord = word.toLowerCase();
-
                 if (['the', 'a', 'an', 'this', 'that', 'these', 'those'].includes(lowerWord)) return 'DET';
                 if (['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them'].includes(lowerWord)) return 'PRON';
                 if (['is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did'].includes(lowerWord)) return 'VERB';
@@ -403,25 +575,19 @@
                 if (lowerWord.endsWith('ly')) return 'ADV';
                 if (lowerWord.endsWith('ful') || lowerWord.endsWith('less') || lowerWord.endsWith('ous')) return 'ADJ';
                 if (word[0] === word[0].toUpperCase() && word.length > 1) return 'PROPN';
-
                 return 'NOUN';
-          }
-                     // Text Generation
+            }
+            // Text Generation
             generateText(prompt, maxLength = 200) {
-                if (!prompt || prompt.trim().length === 0) {
-                    return "Please provide a prompt for text generation.";
-                }
-
+                if (!prompt || prompt.trim().length === 0) { return "Please provide a prompt for text generation."; }
                 const templates = [
                     "Based on your input, here's a continuation: ",
                     "Expanding on that thought: ",
                     "To elaborate further: ",
                     "This leads to the consideration that: "
                 ];
-
                 const words = prompt.toLowerCase().split(' ');
                 let continuation = "";
-
                 if (words.some(word => ['story', 'once', 'character', 'plot'].includes(word))) {
                     continuation = this.generateStoryContinuation();
                 } else if (words.some(word => ['science', 'research', 'study', 'analysis'].includes(word))) {
@@ -429,15 +595,10 @@
                 } else {
                     continuation = this.generateGeneralContinuation();
                 }
-
                 const template = templates[Math.floor(Math.random() * templates.length)];
                 const fullText = prompt + " " + template + continuation;
-
                 const wordArray = fullText.split(' ');
-                if (wordArray.length > maxLength) {
-                    return wordArray.slice(0, maxLength).join(' ') + "...";
-                }
-
+                if (wordArray.length > maxLength) { return wordArray.slice(0, maxLength).join(' ') + "..."; }
                 return fullText;
             }
 
@@ -473,91 +634,45 @@
 
             // Question Answering
             answerQuestion(question, context) {
-                if (!question || !context) {
-                    return { answer: null, confidence: 0 };
-                }
-
+                if (!question || !context) { return { answer: null, confidence: 0 }; }
                 const questionWords = question.toLowerCase().split(' ').filter(word => word.length > 2);
                 const sentences = context.split(/[.!?]+/).filter(s => s.trim().length > 0);
-
                 let bestSentence = "";
                 let bestScore = 0;
-
                 sentences.forEach(sentence => {
                     const sentenceLower = sentence.toLowerCase();
                     let score = 0;
-
-                    questionWords.forEach(word => {
-                        if (sentenceLower.includes(word)) {
-                            score += 1;
-                        }
-                    });
-
-                    if (score > bestScore) {
-                        bestScore = score;
-                        bestSentence = sentence.trim();
-                    }
+                    questionWords.forEach(word => { if (sentenceLower.includes(word)) { score += 1; } });
+                    if (score > bestScore) { bestScore = score; bestSentence = sentence.trim(); }
                 });
-
                 const confidence = questionWords.length > 0 ? bestScore / questionWords.length : 0;
-
-                return {
-                    answer: bestSentence || "No relevant answer found in the context.",
-                    confidence: Math.min(confidence, 1.0),
-                    context: bestSentence
-                };
+                return { answer: bestSentence || "No relevant answer found in the context.", confidence: Math.min(confidence, 1.0), context: bestSentence };
             }
 
             // Text Summarization
             summarizeText(text, ratio = 0.3) {
-                if (!text || text.trim().length === 0) {
-                    return "No text provided for summarization.";
-                }
-
+                if (!text || text.trim().length === 0) { return "No text provided for summarization."; }
                 const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
-
-                if (sentences.length <= 2) {
-                    return text;
-                }
-
+                if (sentences.length <= 2) { return text; }
                 const words = text.toLowerCase().match(/\b\w+\b/g) || [];
                 const wordFreq = {};
-
-                words.forEach(word => {
-                    if (word.length > 3) {
-                        wordFreq[word] = (wordFreq[word] || 0) + 1;
-                    }
-                });
-
+                words.forEach(word => { if (word.length > 3) { wordFreq[word] = (wordFreq[word] || 0) + 1; } });
                 const sentenceScores = sentences.map(sentence => {
                     const sentWords = sentence.toLowerCase().match(/\b\w+\b/g) || [];
                     let score = 0;
-
-                    sentWords.forEach(word => {
-                        if (wordFreq[word]) {
-                            score += wordFreq[word];
-                        }
-                    });
-
+                    sentWords.forEach(word => { if (wordFreq[word]) { score += wordFreq[word]; } });
                     return { sentence: sentence.trim(), score: score };
                 });
-
                 sentenceScores.sort((a, b) => b.score - a.score);
                 const numSentences = Math.max(1, Math.floor(sentences.length * ratio));
                 const topSentences = sentenceScores.slice(0, numSentences);
-
-                const summary = sentences.filter(sentence =>
-                    topSentences.some(ts => ts.sentence === sentence.trim())
-                );
-
+                const summary = sentences.filter(sentence => topSentences.some(ts => ts.sentence === sentence.trim()));
                 return summary.join('. ') + '.';
             }
-                      // Topic Modeling (simplified)
-            extractTopics(text, numTopics = 3) {
-                if (!text || text.trim().length === 0) {
-                    return { topics: [], wordFreq: {} };
-                }
 
+            // Topic Modeling (simplified)
+            extractTopics(text, numTopics = 3) {
+                if (!text || text.trim().length === 0) { return { topics: [], wordFreq: {} }; }
                 const words = text.toLowerCase().match(/\b\w+\b/g) || [];
                 const stopWords = new Set([
                     'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
@@ -576,65 +691,33 @@
                     'outside', 'over', 'past', 'round', 'since', 'than', 'through', 'to', 'toward',
                     'under', 'underneath', 'until', 'up', 'upon', 'with', 'within', 'without', 'etc'
                 ]);
-
-                const filteredWords = words.filter(word =>
-                    word.length > 3 && !stopWords.has(word)
-                );
-
+                const filteredWords = words.filter(word => word.length > 3 && !stopWords.has(word));
                 const wordFreq = {};
-                filteredWords.forEach(word => {
-                    wordFreq[word] = (wordFreq[word] || 0) + 1;
-                });
-
-                const sortedWords = Object.entries(wordFreq)
-                    .sort(([,a], [,b]) => b - a);
-
+                filteredWords.forEach(word => { wordFreq[word] = (wordFreq[word] || 0) + 1; });
+                const sortedWords = Object.entries(wordFreq).sort(([,a], [,b]) => b - a);
                 const topics = [];
                 const wordsPerTopic = Math.max(1, Math.floor(sortedWords.length / numTopics));
-
                 for (let i = 0; i < numTopics && i * wordsPerTopic < sortedWords.length; i++) {
-                    const topicWords = sortedWords
-                        .slice(i * wordsPerTopic, (i + 1) * wordsPerTopic)
-                        .slice(0, 5)
-                        .map(([word]) => word);
-
-                    if (topicWords.length > 0) {
-                        topics.push(topicWords);
-                    }
+                    const topicWords = sortedWords.slice(i * wordsPerTopic, (i + 1) * wordsPerTopic).slice(0, 5).map(([word]) => word);
+                    if (topicWords.length > 0) { topics.push(topicWords); }
                 }
-
-                return {
-                    topics: topics,
-                    wordFreq: Object.fromEntries(sortedWords.slice(0, 20))
-                };
+                return { topics: topics, wordFreq: Object.fromEntries(sortedWords.slice(0, 20)) };
             }
-
             // Chatbot Response Generation
             generateChatResponse(userInput) {
                 const analysis = this.analyzeSentiment(userInput);
                 const entities = this.extractEntities(userInput);
                 const lowerInput = userInput.toLowerCase();
-
-                if (this.isGreeting(lowerInput)) {
-                    return { response: this.getRandomResponse('greeting'), analysis: { sentiment: analysis.label, entities: entities } };
-                }
-
-                if (this.isQuestion(lowerInput)) {
-                    return { response: this.getRandomResponse('question'), analysis: { sentiment: analysis.label, entities: entities } };
-                }
-
+                if (this.isGreeting(lowerInput)) { return { response: this.getRandomResponse('greeting'), analysis: { sentiment: analysis.label, entities: entities } }; }
+                if (this.isQuestion(lowerInput)) { return { response: this.getRandomResponse('question'), analysis: { sentiment: analysis.label, entities: entities } }; }
                 let responseType = 'neutral';
                 if (analysis.label === 'Positive') responseType = 'positive';
                 else if (analysis.label === 'Negative') responseType = 'negative';
-
                 return { response: this.getRandomResponse(responseType), analysis: { sentiment: analysis.label, entities: entities } };
             }
 
             isGreeting(text) {
-                const greetingPatterns = [
-                    'hello', 'hi', 'hey', 'greetings', 'good morning',
-                    'good afternoon', 'good evening', 'how are you', 'how are things', 'sup'
-                ];
+                const greetingPatterns = [ 'hello', 'hi', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening', 'how are you', 'how are things', 'sup' ];
                 return greetingPatterns.some(pattern => text.includes(pattern));
             }
 
@@ -648,8 +731,40 @@
                 return responses[Math.floor(Math.random() * responses.length)];
             }
         }
-                 // Global instance of NLPService
+
+        // Global instance of NLPService
         const nlpService = new NLPService();
+
+        // UI Logic for Section Switching
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden-section');
+                        section.classList.add('active-section');
+                    } else {
+                        section.classList.add('hidden-section');
+                        section.classList.remove('active-section');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    e.target.classList.add('active');
+                    showSection(e.target.dataset.section);
+                });
+            });
+
+            // Show welcome section by default
+            showSection('welcome');
+        });
+
 
         // Function to run NLP analysis and update UI
         function runNLP() {
@@ -657,18 +772,27 @@
             const inputQuestion = document.getElementById('inputQuestion').value;
 
             // Clear previous outputs
-            document.getElementById('sentimentOutput').textContent = '';
-            document.getElementById('entitiesOutput').textContent = '';
-            document.getElementById('posOutput').textContent = '';
-            document.getElementById('summaryOutput').textContent = '';
-            document.getElementById('topicsOutput').textContent = '';
-            document.getElementById('answerOutput').textContent = '';
-            document.getElementById('generatedTextOutput').textContent = '';
-            document.getElementById('chatResponseOutput').textContent = '';
+            document.getElementById('sentimentOutput').textContent = 'Analyzing...';
+            document.getElementById('entitiesOutput').textContent = 'Analyzing...';
+            document.getElementById('posOutput').textContent = 'Analyzing...';
+            document.getElementById('summaryOutput').textContent = 'Analyzing...';
+            document.getElementById('topicsOutput').textContent = 'Analyzing...';
+            document.getElementById('answerOutput').textContent = 'Analyzing...';
+            document.getElementById('generatedTextOutput').textContent = 'Analyzing...';
+            document.getElementById('chatResponseOutput').textContent = 'Analyzing...';
 
 
             if (!inputText.trim()) {
-                alert("Please enter some text to analyze!");
+                alert("Please enter some text in the 'Main Text for Analysis' area to run the NLP demo!");
+                // Clear outputs if no text
+                document.getElementById('sentimentOutput').textContent = '';
+                document.getElementById('entitiesOutput').textContent = '';
+                document.getElementById('posOutput').textContent = '';
+                document.getElementById('summaryOutput').textContent = '';
+                document.getElementById('topicsOutput').textContent = '';
+                document.getElementById('answerOutput').textContent = '';
+                document.getElementById('generatedTextOutput').textContent = '';
+                document.getElementById('chatResponseOutput').textContent = '';
                 return;
             }
 
