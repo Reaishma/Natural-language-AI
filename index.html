@@ -30,6 +30,7 @@
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            display: flex; /* Add flexbox to the body */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -59,7 +60,7 @@
             left: 0;
             height: 100vh; /* Full viewport height */
             overflow-y: auto; /* Enable scrolling for sidebar content if needed */
-            z-index: 1000; /* Ensure sidebar is on top */
+            z-index: 1001; /* Increased z-index to ensure it's on top */
         }
 
         .sidebar h2 {
@@ -318,6 +319,9 @@
 
         /* Responsive Design */
         @media (max-width: 768px) { /* Adjust breakpoint for smaller screens */
+            body {
+                flex-direction: column; /* Stack sidebar and main content vertically */
+            }
             .sidebar {
                 width: 100%;
                 height: auto; /* Allow sidebar to collapse height */
