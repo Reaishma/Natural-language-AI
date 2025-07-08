@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive NLP Demonstration Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght300;400;500&display=swap" rel="stylesheet">
     <style>
         /* Global Reset & Base Styling */
         :root {
@@ -125,8 +124,8 @@
             border: 1px solid var(--border-color);
             /* --- IMPORTANT FIX --- */
             /* Ensure content sections are block-level elements by default */
-            display: block; 
-            /* This makes sure that when 'hidden' is removed, it becomes visible */
+            /* display: block;  <-- This line should NOT be here, as .hidden will override it with !important */
+            /* We will control display via JS to toggle 'hidden' class */
         }
 
         .content-section h2 {
@@ -539,6 +538,7 @@
                 <textarea id="genPromptInput" placeholder="Start writing something..."></textarea>
             </div>
             
+            
             <div class="options-group">
                 <div>
                     <label for="genMaxLength">Max Length:</label>
@@ -591,7 +591,7 @@
                 <label for="summaryTextInput">Enter the text you want to summarize:</label>
                 <textarea id="summaryTextInput" placeholder="Paste a long article or document here..."></textarea>
             </div>
-            
+
             <div class="options-group">
                 <div>
                     <label for="summaryLength">Summary Length:</label>
@@ -621,7 +621,7 @@
                 <label for="topicTextInput">Enter a longer text for topic analysis:</label>
                 <textarea id="topicTextInput" placeholder="Provide a substantial amount of text for best results..."></textarea>
             </div>
-            
+
             <div class="options-group">
                 <div>
                     <label for="numTopics">Number of Topics:</label>
@@ -876,7 +876,7 @@
             answerQuestion(question, context) {
                 if (!question || !context) { return { answer: null, confidence: 0, context: "Please provide both context and a question." }; }
                 const questionWords = question.toLowerCase().split(' ').filter(word => word.length > 2);
-                const sentences = context.split(/[.!?]+/).filter(s => s.trim().length > 0);
+                                const sentences = context.split(/[.!?]+/).filter(s => s.trim().length > 0);
                 let bestSentence = "";
                 let bestScore = 0;
                 sentences.forEach(sentence => {
@@ -968,7 +968,6 @@
                 return responses[Math.floor(Math.random() * responses.length)];
             }
         }
-
         // --- UI Logic for Section Switching ---
         document.addEventListener('DOMContentLoaded', () => {
             console.log("DOM content loaded."); // Debugging message
@@ -981,10 +980,13 @@
                 contentSections.forEach(section => {
                     if (section.id === targetId) {
                         section.classList.remove('hidden');
-                        console.log(`Removed 'hidden' from: ${section.id}`);
+                        // Crucially, set its display property explicitly if 'hidden' uses !important
+                        section.style.display = 'block'; // Or 'flex', 'grid' depending on what .content-section normally is
+                        console.log(`Removed 'hidden' and set display: block for: ${section.id}`);
                     } else {
                         section.classList.add('hidden');
-                        console.log(`Added 'hidden' to: ${section.id}`);
+                        section.style.display = 'none'; // Ensure it's hidden
+                        console.log(`Added 'hidden' and set display: none for: ${section.id}`);
                     }
                 });
             }
@@ -992,7 +994,7 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevent default link behavior (page reload)
-                    
+
                     // Use e.currentTarget to ensure we get the 'a' element, not a child like 'i'
                     const clickedLink = e.currentTarget; 
                     console.log("Nav link clicked for section:", clickedLink.dataset.targetSection); // Debugging message
@@ -1202,4 +1204,3 @@
     </script>
 </body>
 </html>
-
