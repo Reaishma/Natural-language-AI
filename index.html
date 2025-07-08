@@ -42,7 +42,7 @@
 
         /* Utility classes */
         .hidden {
-            display: none !important;
+            display: none !important; /* Ensure it overrides other display properties */
         }
 
         /* Layout: Sidebar and Main Content */
@@ -311,7 +311,7 @@
             gap: 8px;
         }
         .options-group input[type="range"],
-        .options-group input[type="number"] {
+        .options[type="number"] {
             width: 100px; /* Fixed width for sliders/numbers */
             padding: 5px;
             text-align: center;
@@ -967,10 +967,13 @@
 
         // --- UI Logic for Section Switching ---
         document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM content loaded."); // Debugging message
+
             const navLinks = document.querySelectorAll('.nav-link');
             const contentSections = document.querySelectorAll('.content-section');
 
             function showSection(targetId) {
+                console.log("Showing section:", targetId); // Debugging message
                 contentSections.forEach(section => {
                     if (section.id === targetId) {
                         section.classList.remove('hidden');
@@ -982,14 +985,21 @@
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); // Prevent default link behavior (page reload)
+                    console.log("Nav link clicked for section:", e.target.dataset.targetSection); // Debugging message
+
+                    // Remove 'active' class from all links
                     navLinks.forEach(nav => nav.classList.remove('active'));
-                    e.target.classList.add('active');
-                    showSection(e.target.dataset.targetSection);
+                    // Add 'active' class to the clicked link
+                    e.currentTarget.classList.add('active'); // Use currentTarget to ensure the 'a' tag is selected
+
+                    // Get the target section ID from the data attribute
+                    const targetSectionId = e.currentTarget.dataset.targetSection;
+                    showSection(targetSectionId);
                 });
             });
 
-            // Show home section by default
+            // Show home section by default on load
             showSection('home-section');
         });
 
