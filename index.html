@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive NLP Demonstration Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         /* Global Reset & Base Styling */
         :root {
@@ -122,10 +122,8 @@
             border-radius: 12px;
             box-shadow: 0 5px 15px var(--shadow-medium);
             border: 1px solid var(--border-color);
-            /* --- IMPORTANT FIX --- */
-            /* Ensure content sections are block-level elements by default */
-            /* display: block;  <-- This line should NOT be here, as .hidden will override it with !important */
-            /* We will control display via JS to toggle 'hidden' class */
+            /* This property is now controlled by JavaScript's inline style */
+            /* If you want a default for non-hidden, you can add it, but JS will override when showing */
         }
 
         .content-section h2 {
@@ -970,23 +968,20 @@
         }
         // --- UI Logic for Section Switching ---
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOM content loaded."); // Debugging message
-
             const navLinks = document.querySelectorAll('.nav-link');
             const contentSections = document.querySelectorAll('.content-section');
 
             function showSection(targetId) {
-                console.log("Attempting to show section:", targetId); // Debugging message
                 contentSections.forEach(section => {
                     if (section.id === targetId) {
                         section.classList.remove('hidden');
-                        // Crucially, set its display property explicitly if 'hidden' uses !important
-                        section.style.display = 'block'; // Or 'flex', 'grid' depending on what .content-section normally is
-                        console.log(`Removed 'hidden' and set display: block for: ${section.id}`);
+                        // Crucially, set its display property explicitly to override !important
+                        section.style.display = 'block'; 
+                        // If any .content-section has a different default display (e.g., display: flex for dashboard),
+                        // you might need to adjust this, but 'block' is common for sections.
                     } else {
                         section.classList.add('hidden');
-                        section.style.display = 'none'; // Ensure it's hidden
-                        console.log(`Added 'hidden' and set display: none for: ${section.id}`);
+                        section.style.display = 'none'; // Ensure it's explicitly hidden
                     }
                 });
             }
@@ -995,16 +990,10 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevent default link behavior (page reload)
 
-                    // Use e.currentTarget to ensure we get the 'a' element, not a child like 'i'
                     const clickedLink = e.currentTarget; 
-                    console.log("Nav link clicked for section:", clickedLink.dataset.targetSection); // Debugging message
-
-                    // Remove 'active' class from all links
                     navLinks.forEach(nav => nav.classList.remove('active'));
-                    // Add 'active' class to the clicked link
                     clickedLink.classList.add('active'); 
 
-                    // Get the target section ID from the data attribute
                     const targetSectionId = clickedLink.dataset.targetSection;
                     showSection(targetSectionId);
                 });
