@@ -190,7 +190,7 @@ For support, please open an issue in the GitHub repository or contact [vra.9618@
 
 ## Author 
    Reaishma N 🧑‍💻
-   [GitHub] ( )
+   [GitHub] (https://github.com/Reaishma)
 
 
 ## Scalability Considerations
