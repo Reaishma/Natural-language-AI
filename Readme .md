@@ -97,8 +97,8 @@ Visit the live application: [Your GitHub Pages URL]
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/nlp-virtual-assistant.git
-   cd nlp-virtual-assistant
+   git clone https://github.com/Reaishma/Natural-language-AI.git
+   cd Natural-language-AI
    ```
 
 2. **Open with a local server**
