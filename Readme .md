@@ -133,7 +133,7 @@ Visit the live application: [Your GitHub Pages URL]
 
 The application is designed for deployment on cloud platforms with the following characteristics:
 
-## Recommended Platform
+### Recommended Platform
 
 - Platforms: Streamlit Cloud, Heroku, or any Python-supporting cloud service
 
@@ -149,7 +149,7 @@ The application is designed for deployment on cloud platforms with the following
 - **Machine Learning Models**: Hugging Face transformers, OpenAI API
 - **Custom Models**: TensorFlow.js, PyTorch models
 
-### Browser Compatibility
+## Browser Compatibility
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
@@ -188,7 +188,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, please open an issue in the GitHub repository or contact [vra.9618@gmail.com].
 
-
+## Author 
+   Reaishma N 🧑‍💻
+   [GitHub] ( )
 
 
 ## Scalability Considerations
