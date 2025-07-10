@@ -91,7 +91,7 @@ The application follows a modular architecture with clear separation of concerns
 
 ## Live Demo
 
-(Visit the live application)[https://reaishma.github.io/Natural-language-AI/]
+[Visit the live application](https://reaishma.github.io/Natural-language-AI/)
 
 ### For Local Development
 
@@ -190,7 +190,7 @@ For support, please open an issue in the GitHub repository or contact [vra.9618@
 
 ## Author 
    Reaishma N 🧑‍💻
-   (GitHub) [https://github.com/Reaishma]
+   [GitHub] (https://github.com/Reaishma)
 
 
 ## Scalability Considerations
