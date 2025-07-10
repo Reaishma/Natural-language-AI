@@ -133,16 +133,16 @@ Visit the live application: [Your GitHub Pages URL]
 
 The application is designed for deployment on cloud platforms with the following characteristics:
 
-### Recommended Platform
+## Recommended Platform
 
-- ** Platforms**: Streamlit Cloud, Heroku, or any Python-supporting cloud service
+- Platforms: Streamlit Cloud, Heroku, or any Python-supporting cloud service
 
-### Configuration Requirements
+## Configuration Requirements
 - Python 3.7+ runtime environment
 - Automatic dependency installation via requirements.txt (implied)
 - Internet connectivity for Google Translate API and NLTK downloads
 
-###NLP Processing 
+## NLP Processing 
 
 - **Text Processing APIs**: Google Cloud Natural Language, AWS Comprehend, Azure Text Analytics
 - **Translation Services**: Google Translate API, Azure Translator
@@ -191,7 +191,7 @@ For support, please open an issue in the GitHub repository or contact [vra.9618@
 
 
 
-### Scalability Considerations
+## Scalability Considerations
 - Stateless design allows for easy horizontal scaling
 - Module-based architecture enables selective feature deployment
 - Memory-efficient processing suitable for small to medium-scale usage
