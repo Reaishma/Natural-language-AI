@@ -64,6 +64,9 @@ The application follows a modular architecture with clear separation of concerns
 - Provides confidence scores and detailed analysis
 
 #### Text Generation
+
+![Text Generation](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162301_1.jpg)
+
 - **Story Generation**: Create creative stories with themes and length options
 - **Email Writing**: Generate professional, casual, or formal emails
 - **Blog Post Creation**: Create structured blog posts with main points
