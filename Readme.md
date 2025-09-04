@@ -88,6 +88,9 @@ The application follows a modular architecture with clear separation of concerns
 - Intensity analysis with confidence metrics
 
 #### Language Translation
+
+![Language Translation](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162547_1.jpg)
+
 - Support for 20+ languages
 - Automatic language detection
 - Popular languages: English, Spanish, French, German, Italian, Portuguese, Russian, Japanese, Korean, Chinese, Arabic, Hindi
