@@ -56,6 +56,9 @@ The application follows a modular architecture with clear separation of concerns
 ## ✅ Features 
 
 #### Text Classification
+
+![Text classification](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162236_1.jpg)
+
 - Automatically categorize text content
 - Supports multiple categories: technology, business, sports, health, education, entertainment, news, personal
 - Provides confidence scores and detailed analysis
