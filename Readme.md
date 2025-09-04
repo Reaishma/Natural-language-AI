@@ -79,6 +79,9 @@ The application follows a modular architecture with clear separation of concerns
 - Adjustable summary length (10-80% of original)
 
 #### Sentiment Analysis
+
+![Sentiment Analysis](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162508_1.jpg)
+
 - Overall sentiment classification (Positive/Negative/Neutral)
 - Polarity and subjectivity scores
 - Emotion detection (joy, sadness, anger, fear, surprise, disgust)
