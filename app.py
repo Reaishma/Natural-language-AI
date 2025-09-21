@@ -29,17 +29,7 @@ def main():
     )
 
     # Custom CSS for better layout (minimal styling)
-    st.markdown("""
-        <style>
-        .main-header {
-            text-align: center;
-            padding: 1rem 0;
-        }
-        .feature-card {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin: 0.5rem 0;
-        }
+    
         </style>
     """, unsafe_allow_html=True)
 
