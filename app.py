@@ -28,11 +28,7 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    # Custom CSS for better layout (minimal styling)
     
-        </style>
-    """, unsafe_allow_html=True)
-
     # Sidebar navigation
     with st.sidebar:
         st.image("https://via.placeholder.com/200x100/4CAF50/FFFFFF?text=NLP+Assistant", width=200)
