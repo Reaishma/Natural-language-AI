@@ -256,7 +256,9 @@ Track usage statistics for analytics
 
 def show_error_page(error_message):
     
-    Display error page when something goes wrong
+    """
+Display error page when something goes wrong
+"""
     
     st.error("🚨 Application Error")
     st.write(f"An error occurred: {error_message}")
