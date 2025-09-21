@@ -5,6 +5,5 @@ scipy
 scikit-learn 
 nltk
 spacy
-nlp_modules
 datasets 
 sentence-transformers
