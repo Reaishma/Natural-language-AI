@@ -236,7 +236,7 @@ def show_home_page():
     <div style="text-align: center; color: #666; padding: 1rem;">
         Built using Streamlit | Powered by Advanced NLP Libraries
     </div>
-    """, unsafe_allow_html=True)
+   """, unsafe_allow_html=True)
 
 def track_usage(tool_name):
     
