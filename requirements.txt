@@ -1,6 +1,9 @@
 streamlit
 transformers
 torch
+scipy
+scikit-learn 
 nltk
 spacy
+datasets 
 sentence-transformers
