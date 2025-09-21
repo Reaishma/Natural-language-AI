@@ -243,8 +243,9 @@ def show_home_page():
 
 def track_usage(tool_name):
     
-    Track usage statistics for analytics
-    
+    """
+Track usage statistics for analytics
+   """ 
     if 'usage_stats' not in st.session_state:
         st.session_state.usage_stats = {}
 
