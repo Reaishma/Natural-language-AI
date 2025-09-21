@@ -234,7 +234,7 @@ def show_home_page():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #666; padding: 1rem;">
-        Built with ❤️ using Streamlit | Powered by Advanced NLP Libraries
+        Built using Streamlit | Powered by Advanced NLP Libraries
     </div>
     """, unsafe_allow_html=True)
 
