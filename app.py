@@ -251,9 +251,9 @@ def track_usage(tool_name):
     st.session_state.usage_stats[tool_name] += 1
 
 def show_error_page(error_message):
-    """
+    
     Display error page when something goes wrong
-    """
+    
     st.error("🚨 Application Error")
     st.write(f"An error occurred: {error_message}")
     st.write("Please try refreshing the page or contact support if the issue persists.")
