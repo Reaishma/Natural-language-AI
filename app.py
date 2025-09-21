@@ -1,4 +1,4 @@
-deff"
+"""
 NLP Virtual Assistant - Main Application
 A comprehensive NLP tool with multiple capabilities built with Streamlit
 """
