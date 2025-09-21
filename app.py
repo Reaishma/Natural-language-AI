@@ -112,6 +112,7 @@ def main():
     elif selected_tool == "🏷️ Named Entity Recognition":
         track_usage("Named Entity Recognition")
         create_ner_interface()
+    
 
 def show_home_page():
     """
