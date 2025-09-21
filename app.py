@@ -13,7 +13,7 @@ from nlp_modules.text_classifier import create_text_classification_interface
 from nlp_modules.text_generator import create_text_generation_interface
 from nlp_modules.summarizer import create_text_summarization_interface
 from nlp_modules.sentiment_analyzer import create_sentiment_analysis_interface
-from nlp_modules.translator import create_translation_interface  # <--- No spaces on this line
+from nlp_modules.translator import create_translation_interface
 from nlp_modules.question_answerer import create_question_answering_interface
 from nlp_modules.ner_extractor import create_ner_interface
 
