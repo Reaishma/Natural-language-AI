@@ -1,0 +1,83 @@
+# NLP Virtual Assistant - Requirements for Streamlit Cloud Deployment
+# Copy this content to requirements.txt when deploying to Streamlit Cloud
+
+# Core Streamlit and web framework
+streamlit>=1.28.0
+
+# Deep Learning Frameworks
+torch>=2.0.0
+tensorflow>=2.13.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# NLP Libraries
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+spacy>=3.6.0
+nltk>=3.8.0
+textblob>=0.17.0
+
+# Language Detection and Translation
+langdetect>=1.0.9
+googletrans>=4.0.0
+
+# Text Processing and Analysis
+wordcloud>=1.9.0
+gensim>=4.3.0
+fuzzywuzzy>=0.18.0
+python-levenshtein>=0.21.0
+
+# Data Visualization (for NLP analytics)
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Additional ML utilities
+joblib>=1.3.0
+scipy>=1.11.0
+
+# Text preprocessing
+contractions>=0.1.73
+beautifulsoup4>=4.12.0
+regex>=2023.6.3
+
+# Performance and optimization
+accelerate>=0.20.0
+optimum>=1.9.0
+
+# Evaluation metrics
+rouge-score>=0.1.2
+sacrebleu>=2.3.0
+
+# Audio processing (for speech-related NLP)
+librosa>=0.10.0
+
+# Additional dependencies for production
+requests>=2.31.0
+tqdm>=4.65.0
+click>=8.1.0
+
+# Memory optimization for large models
+psutil>=5.9.0
+
+# For handling different file formats
+openpyxl>=3.1.0
+python-docx>=0.8.11
+
+# Image processing (for multimodal NLP)
+Pillow>=10.0.0
+
+# Caching and performance
+diskcache>=5.6.0
+
+# Date and time processing
+python-dateutil>=2.8.0
+
+# Configuration management
+pyyaml>=6.0
+
+# Logging and monitoring
+loguru>=0.7.0
