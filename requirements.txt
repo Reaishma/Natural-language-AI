@@ -1,0 +1,11 @@
+streamlit
+nltk
+spacy
+torch
+tensorflow
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+plotly
