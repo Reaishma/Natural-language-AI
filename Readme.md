@@ -1,5 +1,8 @@
 # NLP Virtual Assistant
 
+**🤖See the virtual Assistant on Streamlit https://natural-language-ai-gwrfrjcjl8f62rmpgfay45.streamlit.app/**
+
+
 This a comprehensive Natural Language Processing (NLP) built with Streamlit. The application provides multiple NLP capabilities including text classification, sentiment analysis, text generation, summarization, named entity recognition, question answering, and language translation. The system is designed as a modular web application that allows users to interact with various NLP tools through a unified interface.
 
 ![Overview](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162123_1.jpg)
