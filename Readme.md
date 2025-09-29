@@ -1,4 +1,4 @@
-# NLP Virtual Assistant
+# 🤖 NLP Virtual Assistant
 
 <div align="center">
 
