@@ -10,3 +10,4 @@ matplotlib
 seaborn
 plotly
 TextBlob
+deep_translator
