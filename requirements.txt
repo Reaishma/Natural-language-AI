@@ -9,5 +9,5 @@ pandas
 matplotlib
 seaborn
 plotly
-TextBlob
+textblob
 deep_translator
