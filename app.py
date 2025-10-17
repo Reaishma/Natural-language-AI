@@ -3,10 +3,7 @@ NLP Virtual Assistant - Main Application
 
 A comprehensive NLP tool with multiple capabilities built with Streamlit
 """
-import nltk
-nltk.download('vader_lexicon')
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
+
 import streamlit as st
 from datetime import datetime
 
