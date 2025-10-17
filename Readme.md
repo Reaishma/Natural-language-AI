@@ -7,10 +7,11 @@
 
 **Web Interface on https://reaishma.github.io/Natural-language-AI/**
 
+![Overview](https://github.com/Reaishma/Natural-language-AI/blob/main/Nlp%20assistant.png)
+
 
 This a comprehensive Natural Language Processing (NLP) built with Streamlit. The application provides multiple NLP capabilities including text classification, sentiment analysis, text generation, summarization, named entity recognition, question answering, and language translation. The system is designed as a modular web application that allows users to interact with various NLP tools through a unified interface.
 
-![Overview](https://github.com/Reaishma/Natural-language-AI/blob/main/Nlp%20assistant.png)
 
 ## 🛠️ System Architecture
 
