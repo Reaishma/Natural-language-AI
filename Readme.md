@@ -77,6 +77,9 @@ The application follows a modular architecture with clear separation of concerns
 - **Text Continuation**: Extend existing text in various styles
 
 #### Text Summarization
+
+![Summary](https://github.com/Reaishma/Natural-language-AI/blob/main/Text%20summary.png)
+
 - **Extractive Summary**: Select key sentences from original text
 - **Bullet Points**: Create concise bullet-point summaries
 - **Keywords & Phrases**: Extract important terms and concepts
