@@ -107,6 +107,9 @@ The application follows a modular architecture with clear separation of concerns
 - Keyword extraction and analysis
 
 #### Named Entity Recognition
+
+![NER](https://github.com/Reaishma/Natural-language-AI/blob/main/NER.png)
+
 - Extract people, organizations, locations, dates, times, money, emails, phone numbers, URLs
 - Entity relationship analysis
 - Custom pattern extraction
