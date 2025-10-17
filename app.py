@@ -5,6 +5,8 @@ A comprehensive NLP tool with multiple capabilities built with Streamlit
 """
 
 import streamlit as st
+import nltk
+nltk.download('all')
 from datetime import datetime
 
 from text_classifier import create_text_classification_interface
