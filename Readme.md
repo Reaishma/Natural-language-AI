@@ -34,6 +34,7 @@ The application follows a modular architecture with clear separation of concerns
 - **Text Classifier** (`text_classifier.py`): Categorizes text into predefined topics (technology, business, sports, health, education, entertainment, news, personal)
 - **Sentiment Analyzer** (`sentiment_analyzer.py`): Analyzes emotional tone using TextBlob with detailed emotion keyword detection
 - **Text Generator** (`text_generator.py`): Creates content using template-based generation for stories, emails, and blog posts
+![email writing](https://github.com/Reaishma/Natural-language-AI/blob/main/Email%20writing.png)
 - **Text Summarizer** (`summarizer.py`): Performs extractive summarization using NLTK with TF-IDF scoring
 - **Named Entity Recognizer** (`ner_extractor.py`): Extracts entities using rule-based patterns and NLTK
 - **Question Answerer** (`question_answerer.py`): Basic Q&A using pattern matching and text search
