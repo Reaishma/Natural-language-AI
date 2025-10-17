@@ -93,7 +93,7 @@ The application follows a modular architecture with clear separation of concerns
 
 #### Language Translation
 
-![Language Translation](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162547_1.jpg)
+![Language Translation](https://github.com/Reaishma/Natural-language-AI/blob/main/Language%20translation.png)
 
 - Support for 20+ languages
 - Automatic language detection
