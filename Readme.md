@@ -175,6 +175,8 @@ The application is designed for deployment on cloud platforms with the following
 
 ## 🚀 NLP Processing 
 
+![Text continue](https://github.com/Reaishma/Natural-language-AI/blob/main/Text%20continue.png)
+
 - **Text Processing APIs**: Google Cloud Natural Language, AWS Comprehend, Azure Text Analytics
 - **Translation Services**: Google Translate API, Azure Translator
 - **Machine Learning Models**: Hugging Face transformers, OpenAI API
