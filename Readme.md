@@ -101,6 +101,9 @@ The application follows a modular architecture with clear separation of concerns
 - Real-time translation with confidence scores
 
 #### Question Answering
+
+![Q&A](https://github.com/Reaishma/Natural-language-AI/blob/main/Question%20answering.png)
+
 - Context-based question answering
 - Support for various question types (who, what, when, where, why, how)
 - Confidence scoring and relevant context highlighting
