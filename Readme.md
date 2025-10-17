@@ -84,7 +84,7 @@ The application follows a modular architecture with clear separation of concerns
 
 #### Sentiment Analysis
 
-![Sentiment Analysis](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162508_1.jpg)
+![Sentiment Analysis](https://github.com/Reaishma/Natural-language-AI/blob/main/Sentiment%20analysis.png)
 
 - Overall sentiment classification (Positive/Negative/Neutral)
 - Polarity and subjectivity scores
