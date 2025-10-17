@@ -29,7 +29,7 @@ The application follows a modular architecture with clear separation of concerns
 
 ### 📌 NLP Processing Modules
 
-![NLP modules](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162130_1.jpg)
+![NLP modules](https://github.com/Reaishma/Natural-language-AI/blob/main/Text%20classification.png)
 
 - **Text Classifier** (`text_classifier.py`): Categorizes text into predefined topics (technology, business, sports, health, education, entertainment, news, personal)
 - **Sentiment Analyzer** (`sentiment_analyzer.py`): Analyzes emotional tone using TextBlob with detailed emotion keyword detection
