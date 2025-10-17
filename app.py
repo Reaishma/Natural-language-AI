@@ -5,6 +5,11 @@ A comprehensive NLP tool with multiple capabilities built with Streamlit
 """
 
 import streamlit as st
+import nltk
+nltk.download('punkt_tab')
+nltk.download('punkt')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
 from datetime import datetime
 
 from text_classifier import create_text_classification_interface
