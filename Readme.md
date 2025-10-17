@@ -61,7 +61,6 @@ The application follows a modular architecture with clear separation of concerns
 
 #### Text Classification
 
-![Text classification](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162236_1.jpg)
 
 - Automatically categorize text content
 - Supports multiple categories: technology, business, sports, health, education, entertainment, news, personal
@@ -69,7 +68,7 @@ The application follows a modular architecture with clear separation of concerns
 
 #### Text Generation
 
-![Text Generation](https://github.com/Reaishma/Natural-language-AI/blob/main/Screenshot_20250904-162301_1.jpg)
+![Text Generation](https://github.com/Reaishma/Natural-language-AI/blob/main/Text%20generation.png)
 
 - **Story Generation**: Create creative stories with themes and length options
 - **Email Writing**: Generate professional, casual, or formal emails
